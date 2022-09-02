@@ -28,6 +28,8 @@ extern char *string_replace(char *src, char replace, char with);
    on success else negative */
 extern int string_split(char ***result, const char *src, const char *delim);
 
+extern int char_count(const char *src, const char c);
+
 /*
 #ifdef DEV
 int main(void)
