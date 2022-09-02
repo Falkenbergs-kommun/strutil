@@ -82,6 +82,21 @@ int string_append_format(string *str, const char *fmt, ...)
 	return 0;
 }
 
+int char_count(const char *src, const char c)
+{
+	int n = 0;
+
+	if(src == NULL) {
+		return -1;
+	}
+
+	for(size_t i = 0; i < strlen(src); i++) {
+		if(src[i] == c) n++;
+	}
+
+	return n;
+}
+
 char *string_replace(char *src, char replace, char with)
 {
 	if(src == NULL) {
