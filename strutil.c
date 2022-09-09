@@ -131,12 +131,14 @@ int string_split(char ***result, const char *src, const char *delim)
 		delim_count++;
 	}
 
+	delim_count++;
+
 	if(delim_count == 0) {
 		free(copy);
 		return -1;
 	}
 
-	(*result) = malloc((delim_count) * sizeof(char *));
+	(*result) = malloc(delim_count * sizeof(char *));
 
 	if((*result) == NULL) {
 		free(copy);
