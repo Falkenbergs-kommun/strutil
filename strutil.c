@@ -125,25 +125,26 @@ int string_split(char ***result, const char *src, const char *delim)
 	int delim_count = 0;
 	int index = 0;
 	const char *tmp = src;
-	char *copy = strdup(src);
 	char *token = NULL;
+	char *copy = NULL;
+	char *original = NULL;
+
+	copy = original = strdup(src);
 
 	while((tmp = strstr(tmp, delim))) {
 		tmp++;
 		delim_count++;
 	}
 
-	delim_count++;
-
 	if(delim_count == 0) {
-		free(copy);
+		free(original);
 		return -1;
 	}
 
-	(*result) = malloc(delim_count * sizeof(char *));
+	(*result) = malloc((delim_count + 1) * sizeof(char *));
 
 	if((*result) == NULL) {
-		free(copy);
+		free(original);
 		return -1;
 	}
 
@@ -151,15 +152,30 @@ int string_split(char ***result, const char *src, const char *delim)
 		(*result)[index] = strdup(token);
 		index++;
 	}
+	free(original);
 
-	free(token);
-	free(copy);
 	return delim_count;
 }
 
 #ifdef TEST
 int main(void)
 {
+	char *str = "aaa;bbb;ccc;ddd";
+	char **result = NULL;
+	int n_elements = 0;
+
+	n_elements = string_split(&result, str, ";");
+
+ 	for(int i = 0; i < n_elements + 1; i++) {
+		printf("%s\n", result[i]);
+	} 
+
+ 	for(int i = 0; i < n_elements + 1; i++) {
+		free(result[i]);
+	} 
+
+	free(result);
+
 	return 0;
 }
 
