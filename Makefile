@@ -14,6 +14,7 @@ CXXFLAGS_TEST= -Wall \
 	-Wextra \
 	-pedantic \
 	-Wvla \
+	-g \
 	-O2
 
 all: strutil.o
