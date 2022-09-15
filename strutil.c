@@ -5,6 +5,8 @@
 
 #include "strutil.h"
 
+#define TEST
+
 int string_init(string *str)
 {
 	str->ptr = malloc(1);
@@ -154,3 +156,11 @@ int string_split(char ***result, const char *src, const char *delim)
 	free(copy);
 	return delim_count;
 }
+
+#ifdef TEST
+int main(void)
+{
+	return 0;
+}
+
+#endif
