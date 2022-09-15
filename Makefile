@@ -10,6 +10,12 @@ CXXFLAGS= -c \
 	-fPIC \
 	-O2
 
+CXXFLAGS_TEST= -Wall \
+	-Wextra \
+	-pedantic \
+	-Wvla \
+	-O2
+
 all: strutil.o
 	gcc -shared -o libstrutil.so strutil.o
 
@@ -29,7 +35,7 @@ uninstall:
 clean:
 	rm strutil.o
 	rm libstrutil.so
+	rm test
 
-
-
-
+test:
+	gcc strutil.c -o test $(CXXFLAGS_TEST)
